@@ -3,7 +3,7 @@ public class Car {
     private String model;
     private Integer yearOfProduction;
 
-    private Car() {
+    public Car() {
     }
 
     public Integer getPower() {
@@ -19,7 +19,7 @@ public class Car {
         return yearOfProduction;
     }
 
-
+    @Override
     public String toString() {
         return "Car{" +
                 "power='" + power + '\'' +
