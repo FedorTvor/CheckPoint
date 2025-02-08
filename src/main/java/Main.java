@@ -28,12 +28,18 @@ public class Main {
                     System.out.println("Временно не доступно 2");
                     break;
                 case "3":
-                    // Приблизительное использование рандома
-                    int random = (int) (Math.random() * 10);
-                    String randomChoise = random % 2 ==0 ?
-                            "Временно не доступно 1":
-                            "Временно не доступно 2";
-                    System.out.println(randomChoise);
+                    System.out.println("Введите количество элементов");
+                    //Ввод количесвта элементов в массиве
+                    int n = scanner.nextInt();
+                    Car[] randomCars = new Car[n];
+                    //Заполнение масива объектами с рандомными значениями
+                    for (int i = 0; i < n; i++) {
+                        randomCars[i] = CarRandomizer.generate(new Car());
+                    }
+                    //Вывод массива
+                    for (int i = 0; i < n; i++) {
+                        System.out.println(randomCars[i]);
+                    }
                     break;
                 case "4":
                     System.out.println("Временно не доступно 4");
