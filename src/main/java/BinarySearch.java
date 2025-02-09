@@ -7,7 +7,7 @@ class BinarySearch<O, V>{
     private Comparator<V> comp;
     private O[] arr;//should be sorted
     
-    public BinarySearch(List<O> list, Comparator<V> comparator, ValueGetter<O, V> getter,/*TODO change*/ SortStrategy<O> sorter){
+    public BinarySearch(List<O> list, Comparator<V> comparator, ValueGetter<O, V> getter,/*TODO change*/ Sort<O> sorter){
         get=getter;
         comp=comparator;
         arr=list.toArray(arr);//TODO make sure it is sorted
