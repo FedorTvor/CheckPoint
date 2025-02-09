@@ -7,7 +7,7 @@ class Index<O, V>{
     private Comparator<V> c;
     private O[] arr;//should be sorted
     
-    public Index(List<O> list, Comparator<V> comparator, ValueGetter<O, V> getter, SortStrategy<O> sorter){
+    public Index(List<O> list, Comparator<V> comparator, ValueGetter<O, V> getter, Sort<O> sorter){
         g=getter;
         c=comparator;
         arr=list.toArray(arr);//TODO make sure it is sorted
