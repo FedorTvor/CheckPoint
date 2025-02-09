@@ -1,15 +1,15 @@
 import java.util.Optional;
 import java.util.Comparator;
 import java.util.List;
-
-class Index<O, V>{
-    private ValueGetter<O, V> g;
-    private Comparator<V> c;
+//TODO change name
+class BinarySearch<O, V>{
+    private ValueGetter<O, V> get;
+    private Comparator<V> comp;
     private O[] arr;//should be sorted
     
-    public Index(List<O> list, Comparator<V> comparator, ValueGetter<O, V> getter, SortStrategy<O> sorter){
-        g=getter;
-        c=comparator;
+    public BinarySearch(List<O> list, Comparator<V> comparator, ValueGetter<O, V> getter,/*TODO change*/ SortStrategy<O> sorter){
+        get=getter;
+        comp=comparator;
         arr=list.toArray(arr);//TODO make sure it is sorted
         
         if (sorter != null){
@@ -19,7 +19,7 @@ class Index<O, V>{
     
     public V getValue(int i){
         //returns value of N-th object
-        return g.get(arr[i]);
+        return get.get(arr[i]);
     }
     
     public O getObject(int i){
@@ -28,7 +28,7 @@ class Index<O, V>{
     }
     
     private int compObjVal(int index, V value){//compare object with value
-        return c.compare(getValue(index),value);
+        return comp.compare(getValue(index),value);
     }
     
     private boolean eqObjVal(int index, V value){//equals object with value
@@ -42,10 +42,7 @@ class Index<O, V>{
         int middle_index;
         
         //make sure that value is in bounds
-        if (
-            compObjVal(lower_index,value)>0 ||
-            compObjVal(upper_index,value)<0
-        ){
+        if (compObjVal(lower_index,value)>0 || compObjVal(upper_index,value)<0){
             return Optional.empty();
         }
         
