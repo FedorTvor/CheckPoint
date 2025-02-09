@@ -15,7 +15,7 @@ public class Car {
     }
 
 
-    public int getYearOfProduction() {
+    public Integer getYearOfProduction() {
         return yearOfProduction;
     }
 
@@ -31,7 +31,7 @@ public class Car {
     public static class BuildCAr{
         private Integer power;
         private String model;
-        private int yearOfProduction;
+        private Integer yearOfProduction;
 
         public BuildCAr setPower(Integer power) {
             this.power = power;
