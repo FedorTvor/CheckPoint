@@ -1,7 +1,7 @@
 //There is no cow level
 import java.util.List;
 import java.util.LinkedList;
-import java.util.String
+import java.lang.String;
 
 class CowLevel{
     static String[] sample_models={
@@ -25,15 +25,16 @@ class CowLevel{
         "Audi",
         "Chery",
         "Chevrolet"    
-    }
+    };
     static List<Car> DirtyCars(){
-        Car.BuildCAr cb = new Car.BuildCAr()
+        Car.BuildCAr cb = new Car.BuildCAr();
         //Значения получены из кинутых костей, так-что технически они случайны.
-        list= new LinkedList<Car>;
-        list.add( cb.setPower(12).setYearOfProduction( 7).setModel(sample_models[12]).build());
-        list.add( cb.setPower( 4).setYearOfProduction(11).setModel(sample_models[13]).build());
-        list.add( cb.setPower(16).setYearOfProduction(20).setModel(sample_models[ 9]).build());
-        list.add( cb.setPower(16).setYearOfProduction( 7).setModel(sample_models[ 4]).build());
+        LinkedList<Car> list= new LinkedList<Car>(List.of(
+            cb.setPower(12).setYearOfProduction( 7).setModel(sample_models[12]).build(),
+            cb.setPower( 4).setYearOfProduction(11).setModel(sample_models[13]).build(),
+            cb.setPower(16).setYearOfProduction(20).setModel(sample_models[ 9]).build(),
+            cb.setPower(16).setYearOfProduction( 7).setModel(sample_models[ 4]).build()
+        ));
         return list;
     }
 }
