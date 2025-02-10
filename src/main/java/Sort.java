@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.lang.reflect.Array;
 
 public class Sort<T> {
 	private final CustomComparator<T> comparator;
@@ -32,7 +32,7 @@ public class Sort<T> {
 
         T[] tmp;
         T[] currentSrc = array;
-        T[] currentDest = Arrays.copyOf(array, array.length);
+        T[] currentDest = copyOf(array, array.length);
         int size = 1;
 
         while (size < array.length) {
@@ -47,6 +47,20 @@ public class Sort<T> {
         }
 
         return currentSrc;
+    }
+    //Из Arrays
+    private static <T> T[] copyOf(T[] original, int newLength) {
+        return (T[]) copyOf(original, newLength, original.getClass());
+    }
+
+    private static <T,U> T[] copyOf(U[] original, int newLength, Class<? extends T[]> newType) {
+        @SuppressWarnings("unchecked")
+        T[] copy = ((Object)newType == (Object)Object[].class)
+                ? (T[]) new Object[newLength]
+                : (T[]) Array.newInstance(newType.getComponentType(), newLength);
+        System.arraycopy(original, 0, copy, 0,
+                Math.min(original.length, newLength));
+        return copy;
     }
 
 }
