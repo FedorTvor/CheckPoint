@@ -1,7 +1,8 @@
 import java.util.Optional;
 import java.util.Comparator;
 import java.util.List;
-//TODO change name
+import java.lang.String;
+
 class BinarySearch<O, V>{
     private ValueGetter<O, V> get;
     private Comparator<V> comp;
@@ -25,6 +26,11 @@ class BinarySearch<O, V>{
     public O getObject(int i){
         //returns N-th object
         return arr[i];
+    }
+    
+    public String getValueString(int i){
+        //returns String representation of N-ths object value
+        return get.getString(getObject(i));
     }
     
     private int compObjVal(int index, V value){//compare object with value
