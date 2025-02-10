@@ -58,11 +58,14 @@ class BinarySearch<O, V>{
             return this;
         }
         
+<<<<<<< HEAD
         public BinarySearchBuilder addObjects( O[] arr){
             Arrays.stream(arr).collect(Collectors.toCollection(() -> list));
             return this;
         }
         
+=======
+>>>>>>> 895dc49871f3377ff0317fb0a8776a0e57dfc991
         public BinarySearchBuilder clearObjects(){
             list.clear();
             return this;
@@ -73,11 +76,14 @@ class BinarySearch<O, V>{
             return addObjects(col);
         }
         
+<<<<<<< HEAD
         public BinarySearchBuilder replaceObjects( O[] arr){//this should be generecable, but my googl-fu is failing me
             clearObjects();
             return addObjects(arr);
         }
         
+=======
+>>>>>>> 895dc49871f3377ff0317fb0a8776a0e57dfc991
         public BinarySearch<O,V> build(){
             BinarySearch<O,V> result = new BinarySearch<O,V>();
             
