@@ -2,12 +2,88 @@ import java.util.Optional;
 import java.util.Comparator;
 import java.util.List;
 import java.lang.String;
+import java.util.LinkedList;
+import java.util.Collection;
 
 class BinarySearch<O, V>{
     private ValueGetter<O, V> get;
-    private Comparator<V> comp;
+    private CustomComparator<V> comp;
     private O[] arr;//should be sorted
-    
+    private String val_name;
+    public class BinarySearchBuilder{
+        private ValueGetter<O, V> get=null;
+        private CustomComparator<V> comp=null;
+        private Sort<O> sorter=null;//only needed for building
+       // private Sort(O> obj_sorter=null
+        private LinkedList<O> list= new LinkedList<O>();
+        private String val_name="";
+        
+        public BinarySearchBuilder setGetter(ValueGetter<O, V> g){
+            get=g;
+            
+            refreshObjSorter();
+            
+            return this;
+        }
+        
+        private void refreshObjSorter(){
+            if (get==null || sorter==null){
+                return;
+            }
+            sorter= new Sort<O>(new CompObjectByValue<O,V>(get, comp));
+        }
+        
+        public BinarySearchBuilder setComparator(CustomComparator<V> comp){
+            this.comp=comp;//redo
+
+            refreshObjSorter();
+            
+            return this;
+        }
+        
+        public BinarySearchBuilder setName(String name){
+            val_name=name;
+            return this;
+        }
+        
+        public BinarySearchBuilder addObject( O obj){
+            list.add(obj);
+            return this;
+        }
+        
+        public BinarySearchBuilder addObjects( Collection<O> col){
+            list.addAll(col);
+            return this;
+        }
+        
+        public BinarySearchBuilder clearObjects(){
+            list.clear();
+            return this;
+        }
+        
+        public BinarySearchBuilder replaceObjects( Collection<O> col){
+            clearObjects();
+            return addObjects(col);
+        }
+        
+        public BinarySearch<O,V> build(){
+            BinarySearch<O,V> result = new BinarySearch<O,V>();
+            
+            if (get==null || comp==null){
+                //TODO throw
+            }
+            
+            result.get=get;
+            result.comp=comp;
+            result.val_name=val_name;
+            
+            result.arr=list.toArray(arr);
+            result.arr=sorter.mergeSort(result.arr);
+            
+            return result;
+        }
+    }
+    /*
     public BinarySearch(List<O> list, Comparator<V> comparator, ValueGetter<O, V> getter, Sort<O> sorter){
         get=getter;
         comp=comparator;
@@ -16,7 +92,7 @@ class BinarySearch<O, V>{
         if (sorter != null){
             arr=sorter.mergeSort(arr);
         }
-    };
+    };*/
     
     public V getValue(int i){
         //returns value of N-th object
