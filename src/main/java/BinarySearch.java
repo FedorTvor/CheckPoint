@@ -5,6 +5,7 @@ import java.lang.String;
 import java.util.LinkedList;
 import java.util.Collection;
 import java.util.Arrays;
+import java.lang.reflect.Array;
 import java.util.stream.Collectors;
 
 class BinarySearch<O, V>{
@@ -29,10 +30,11 @@ class BinarySearch<O, V>{
         }
         
         private void refreshObjSorter(){
-            if (get==null || sorter==null){
+            if (get==null || comp==null){
                 return;
             }
             sorter= new Sort<O>(new CompObjectByValue<O,V>(get, comp));
+           // System.out.println(sorter.toString());
         }
         
         public BinarySearchBuilder setComparator(CustomComparator<V> comp){
@@ -58,14 +60,14 @@ class BinarySearch<O, V>{
             return this;
         }
         
-<<<<<<< HEAD
+//<<<<<<< HEAD
         public BinarySearchBuilder addObjects( O[] arr){
             Arrays.stream(arr).collect(Collectors.toCollection(() -> list));
             return this;
         }
         
-=======
->>>>>>> 895dc49871f3377ff0317fb0a8776a0e57dfc991
+//=======
+//>>>>>>> 895dc49871f3377ff0317fb0a8776a0e57dfc991
         public BinarySearchBuilder clearObjects(){
             list.clear();
             return this;
@@ -76,28 +78,35 @@ class BinarySearch<O, V>{
             return addObjects(col);
         }
         
-<<<<<<< HEAD
+//<<<<<<< HEAD
         public BinarySearchBuilder replaceObjects( O[] arr){//this should be generecable, but my googl-fu is failing me
             clearObjects();
             return addObjects(arr);
         }
         
-=======
->>>>>>> 895dc49871f3377ff0317fb0a8776a0e57dfc991
+//=======
+//>>>>>>> 895dc49871f3377ff0317fb0a8776a0e57dfc991
         public BinarySearch<O,V> build(){
             BinarySearch<O,V> result = new BinarySearch<O,V>();
             
             if (get==null || comp==null){
                 //TODO throw
             }
+            //System.out.println(list.get(0).toString());
             
             result.get=get;
             result.comp=comp;
             result.val_name=val_name;
-            
-            result.arr=list.toArray(arr);
+            //result.arr =new O[list.size()];
+            result.arr= (O[]) Array.newInstance(list.get(0).getClass(),list.size());// list.toArray(arr);
+            for (int i=0; i<result.arr.length;i++){
+                result.arr[i]=list.get(i);
+            }
+            //try{
             result.arr=sorter.mergeSort(result.arr);
-            
+            //}catch (java.lang.NullPointerException e){
+            //    System.out.println(sorter.toString());
+            //}
             return result;
         }
     }

@@ -4,6 +4,38 @@ import java.util.LinkedList;
 import java.lang.String;
 
 class CowLevel{
+    static class YearOfCar extends ValueGetter<Car, java.lang.Integer>{
+        public java.lang.Integer get(Car car){
+            return car.getYearOfProduction();
+        }
+    }
+    static class IntComp implements CustomComparator<java.lang.Integer>{
+        public int compare(java.lang.Integer o1, java.lang.Integer o2){
+            if (o1<o2) return -1;
+            if (o1>o2) return 1;
+            return 0; 
+        }
+    }
+    static void debugStuff(){
+        System.out.println("STUPID DEBUG STUFF");
+        YearOfCar getter=new YearOfCar();
+        IntComp comp=new IntComp();
+        CompObjectByValue<Car, java.lang.Integer> car_comp=new CompObjectByValue<Car, java.lang.Integer>(getter, comp);
+        
+        System.out.println("Unsorted cars");
+        java.util.List<Car> cars=CowLevel.dirtyCars();
+        for (Car c : cars){
+            System.out.println(c.toString());
+        }
+        System.out.println("Sorted cars");
+        BinarySearch<Car,java.lang.Integer> index =new BinarySearch<Car,java.lang.Integer>();
+        BinarySearch<Car,java.lang.Integer>.BinarySearchBuilder b=index. new BinarySearchBuilder();
+        BinarySearch<Car,java.lang.Integer> ind=b.addObjects(cars).setGetter(getter).setComparator(comp).build();
+        for(int i=0;i<cars.size();i++){
+            System.out.println(ind.getObject(i).toString());
+        }
+        System.out.println("END OF STUPID DEBUG STUFF");
+    }
     static String[] sample_models={
         "Volvo",
         "Mitsubishi",
@@ -26,7 +58,7 @@ class CowLevel{
         "Chery",
         "Chevrolet"    
     };
-    static List<Car> DirtyCars(){
+    static List<Car> dirtyCars(){
         Car.BuildCAr cb = new Car.BuildCAr();
         //Значения получены из кинутых костей, так-что технически они случайны.
         LinkedList<Car> list= new LinkedList<Car>(List.of(
