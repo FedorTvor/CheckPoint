@@ -1,3 +1,8 @@
+package util.randomfill;
+
+import models.Book;
+import models.Car;
+
 import java.util.Random;
 
 public class BookRandomizer {

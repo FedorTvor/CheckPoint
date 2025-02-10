@@ -1,3 +1,5 @@
+package models;
+
 public class RootVegetable {
     private String type;
     private String colour;
@@ -26,7 +28,7 @@ public class RootVegetable {
 
     @Override
     public String toString() {
-        return "RootVegetable{" +
+        return "models.RootVegetable{" +
                 "type='" + type + '\'' +
                 ", colour='" + colour + '\'' +
                 ", weight=" + weight +
