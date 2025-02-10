@@ -4,6 +4,8 @@ import java.util.List;
 import java.lang.String;
 import java.util.LinkedList;
 import java.util.Collection;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 class BinarySearch<O, V>{
     private ValueGetter<O, V> get;
@@ -56,6 +58,11 @@ class BinarySearch<O, V>{
             return this;
         }
         
+        public BinarySearchBuilder addObjects( O[] arr){
+            Arrays.stream(arr).collect(Collectors.toCollection(() -> list));
+            return this;
+        }
+        
         public BinarySearchBuilder clearObjects(){
             list.clear();
             return this;
@@ -64,6 +71,11 @@ class BinarySearch<O, V>{
         public BinarySearchBuilder replaceObjects( Collection<O> col){
             clearObjects();
             return addObjects(col);
+        }
+        
+        public BinarySearchBuilder replaceObjects( O[] arr){//this should be generecable, but my googl-fu is failing me
+            clearObjects();
+            return addObjects(arr);
         }
         
         public BinarySearch<O,V> build(){
