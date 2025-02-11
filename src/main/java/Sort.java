@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.lang.reflect.Array;
 
 public class Sort<T> {
 	private final CustomComparator<T> comparator;
@@ -8,10 +8,13 @@ public class Sort<T> {
 	}
 
     private void merge(T[] src1, int src1Start, T[] src2, int src2Start, T[] dest, int destStart, int size) {
+        //Стартовые значения
         int index1 = src1Start;
         int index2 = src2Start;
+        //Конечная точка и обработка чтобы массивы не выходили за границу
         int src1End = Math.min(src1Start + size, src1.length);
         int src2End = Math.min(src2Start + size, src2.length);
+        //вычисление общего кол-ва элементов для слияния
         int iterationalCount = src1End - src1Start + src2End - src2Start;
 
         for (int i = destStart; i < destStart + iterationalCount; i++) {
@@ -32,7 +35,7 @@ public class Sort<T> {
 
         T[] tmp;
         T[] currentSrc = array;
-        T[] currentDest = Arrays.copyOf(array, array.length);
+        T[] currentDest = copyOf(array, array.length);
         int size = 1;
 
         while (size < array.length) {
@@ -47,6 +50,20 @@ public class Sort<T> {
         }
 
         return currentSrc;
+    }
+    //Из Arrays
+    private static <T> T[] copyOf(T[] original, int newLength) {
+        return (T[]) copyOf(original, newLength, original.getClass());
+    }
+
+    private static <T,U> T[] copyOf(U[] original, int newLength, Class<? extends T[]> newType) {
+        @SuppressWarnings("unchecked")
+        T[] copy = ((Object)newType == (Object)Object[].class)
+                ? (T[]) new Object[newLength]
+                : (T[]) Array.newInstance(newType.getComponentType(), newLength);
+        System.arraycopy(original, 0, copy, 0,
+                Math.min(original.length, newLength));
+        return copy;
     }
 
 }
