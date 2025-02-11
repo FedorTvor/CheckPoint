@@ -7,7 +7,7 @@ public class CarComporator implements CustomComparator<Car>{
 		} else if (!car1.getModel().equals(car2.getModel())) {
 			return car1.getModel().compareTo(car2.getModel());
 		} else {
-			return CustomComparator.compareINT(car1.getYearOfProduction(), car1.getYearOfProduction());
+			return CustomComparator.compareINT(car1.getYearOfProduction(), car2.getYearOfProduction());
 		}
 	}
 }

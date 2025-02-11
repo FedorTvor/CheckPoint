@@ -8,10 +8,13 @@ public class Sort<T> {
 	}
 
     private void merge(T[] src1, int src1Start, T[] src2, int src2Start, T[] dest, int destStart, int size) {
+        //Стартовые значения
         int index1 = src1Start;
         int index2 = src2Start;
+        //Конечная точка и обработка чтобы массивы не выходили за границу
         int src1End = Math.min(src1Start + size, src1.length);
         int src2End = Math.min(src2Start + size, src2.length);
+        //вычисление общего кол-ва элементов для слияния
         int iterationalCount = src1End - src1Start + src2End - src2Start;
 
         for (int i = destStart; i < destStart + iterationalCount; i++) {
