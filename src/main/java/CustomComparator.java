@@ -1,5 +1,3 @@
-import java.util.Comparator;
-
 
 public interface CustomComparator<T>  {
 	public int compare(T o1, T o2);
