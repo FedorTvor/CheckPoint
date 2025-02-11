@@ -17,7 +17,6 @@ class BinarySearch<O, V>{
         private ValueGetter<O, V> get=null;
         private CustomComparator<V> comp=null;
         private Sort<O> sorter=null;//only needed for building
-       // private Sort(O> obj_sorter=null
         private LinkedList<O> list= new LinkedList<O>();
         private String val_name="";
         
@@ -34,7 +33,6 @@ class BinarySearch<O, V>{
                 return;
             }
             sorter= new Sort<O>(new CompObjectByValue<O,V>(get, comp));
-           // System.out.println(sorter.toString());
         }
         
         public BinarySearchBuilder setComparator(CustomComparator<V> comp){
@@ -60,14 +58,11 @@ class BinarySearch<O, V>{
             return this;
         }
         
-//<<<<<<< HEAD
         public BinarySearchBuilder addObjects( O[] arr){
             Arrays.stream(arr).collect(Collectors.toCollection(() -> list));
             return this;
         }
         
-//=======
-//>>>>>>> 895dc49871f3377ff0317fb0a8776a0e57dfc991
         public BinarySearchBuilder clearObjects(){
             list.clear();
             return this;
@@ -78,48 +73,30 @@ class BinarySearch<O, V>{
             return addObjects(col);
         }
         
-//<<<<<<< HEAD
         public BinarySearchBuilder replaceObjects( O[] arr){//this should be generecable, but my googl-fu is failing me
             clearObjects();
             return addObjects(arr);
         }
         
-//=======
-//>>>>>>> 895dc49871f3377ff0317fb0a8776a0e57dfc991
         public BinarySearch<O,V> build(){
             BinarySearch<O,V> result = new BinarySearch<O,V>();
             
             if (get==null || comp==null){
                 //TODO throw
             }
-            //System.out.println(list.get(0).toString());
             
             result.get=get;
             result.comp=comp;
             result.val_name=val_name;
-            //result.arr =new O[list.size()];
             result.arr= (O[]) Array.newInstance(list.get(0).getClass(),list.size());// list.toArray(arr);
             for (int i=0; i<result.arr.length;i++){
                 result.arr[i]=list.get(i);
             }
-            //try{
             result.arr=sorter.mergeSort(result.arr);
-            //}catch (java.lang.NullPointerException e){
-            //    System.out.println(sorter.toString());
-            //}
+
             return result;
         }
     }
-    /*
-    public BinarySearch(List<O> list, Comparator<V> comparator, ValueGetter<O, V> getter, Sort<O> sorter){
-        get=getter;
-        comp=comparator;
-        arr=list.toArray(arr);
-        
-        if (sorter != null){
-            arr=sorter.mergeSort(arr);
-        }
-    };*/
     
     public V getValue(int i){
         //returns value of N-th object
