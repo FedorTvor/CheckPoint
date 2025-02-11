@@ -34,6 +34,8 @@ class CowLevel{
         for(int i=0;i<cars.size();i++){
             System.out.println(ind.getObject(i).toString());
         }
+        System.out.println("Searching cars from year 11");
+        System.out.println(ind.findObject(11).toString());
         System.out.println("END OF STUPID DEBUG STUFF");
     }
     static String[] sample_models={
