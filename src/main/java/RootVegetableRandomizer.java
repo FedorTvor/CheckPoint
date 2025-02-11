@@ -1,8 +1,3 @@
-package util.randomfill;
-
-import models.Book;
-import models.RootVegetable;
-
 import java.util.Random;
 
 public class RootVegetableRandomizer {

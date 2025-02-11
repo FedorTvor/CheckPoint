@@ -1,5 +1,3 @@
-import models.Car;
-
 public class CarComporator implements CustomComparator<Car>{
 
 	@Override

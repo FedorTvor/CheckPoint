@@ -1,7 +1,3 @@
-package util.randomfill;
-
-import models.Car;
-
 import java.util.Random;
 
 public class CarRandomizer {
