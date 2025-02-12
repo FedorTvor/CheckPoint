@@ -3,41 +3,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Storage storage = Storage.getInstance();
 
-        Scanner scanner = new Scanner(System.in);
-        boolean step = true;
-        //предложение выбора пользаветюлю
-        String[] masString = new String[5];
-        masString[0] = "1 Загрузка из файла";
-        masString[1] = "2 Ввод данных в ручную";
-        masString[2] = "3 Выбор за вас";
-        masString[3] = "4 Поиск значения";
-        masString[4] = "5 Завершение програмы";
 
-        //Сам цикл с ветвлением и ввод пользователя
-        while (step) {
-            Arrays.stream(masString).forEach(System.out::println);
-            String choice = scanner.next();//взаимодействие с пользователем
-            switch (choice) {
-                case "1":
-                    System.out.println("заполнение исходного массив");
-                    break;
-                case "2":
-                    System.out.println("Временно не доступно 2");
-                    break;
-                case "3":
-                    System.out.println("Временно не доступно 3");
-                    break;
-                case "4":
-                    System.out.println("Временно не доступно 4");
-                    break;
-                case "5":
-                    System.out.println("Всего доброго");
-                    step = false;
-                    break;
-                default:
-                    System.out.println("Выбор некорректный");
-            }
-        }
+        Menu menu = new Menu();
+        menu.addAction(1, new ManuallyFillArrayAction());
+        menu.addAction(2, new RandomFillArrayAction());
+        menu.addAction(3, new PrintArrayAction());
+        menu.addAction(0, new ExitAction());
+
+        menu.display();
     }
 }
