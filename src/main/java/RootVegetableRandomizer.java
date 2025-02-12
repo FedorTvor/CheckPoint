@@ -3,14 +3,14 @@ import java.util.Random;
 public class RootVegetableRandomizer {
     private static final String[] TYPES = {"potato", "onion", "daikon", "parsnip",};
     private static final String[] COLOURS = {"yellow", "red", "purple", "white",};
-    private static final int MIN_WEIGHT = 50;
-    private static final int MAX_WEIGHT = 300;
+    private static final Integer MIN_WEIGHT = 50;
+    private static final Integer MAX_WEIGHT = 300;
     private static final Random RANDOM = new Random();
 
-    public static RootVegetable generate(RootVegetable rootVegetable) {
+    public RootVegetable generate() {
         String type = getRandomType();
         String colour = getRandomColour();
-        int weight = getRandomWeight();
+        Integer weight = getRandomWeight();
 
         return new RootVegetable.Builder()
                 .setType(type)
@@ -29,7 +29,7 @@ public class RootVegetableRandomizer {
         return COLOURS[index];
     }
 
-    private static int getRandomWeight() {
+    private static Integer getRandomWeight() {
         return MIN_WEIGHT + RANDOM.nextInt(MAX_WEIGHT - MIN_WEIGHT + 1);
     }
 }

@@ -43,7 +43,7 @@ public class Car {
             return this;
         }
 
-        public BuildCAr setYearOfProduction(int yearOfProduction) {
+        public BuildCAr setYearOfProduction(Integer yearOfProduction) {
             this.yearOfProduction = yearOfProduction;
             return this;
         }

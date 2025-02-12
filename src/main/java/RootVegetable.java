@@ -1,7 +1,7 @@
 public class RootVegetable {
     private String type;
     private String colour;
-    private int weight;
+    private Integer weight;
 
     public RootVegetable() {
     }
@@ -20,7 +20,7 @@ public class RootVegetable {
         return colour;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
@@ -36,7 +36,7 @@ public class RootVegetable {
     public static class Builder{
         private String type;
         private String colour;
-        private int weight;
+        private Integer weight;
 
         public Builder setType(String type) {
             this.type = type;
@@ -48,7 +48,7 @@ public class RootVegetable {
             return this;
         }
 
-        public Builder setWeight(int weight) {
+        public Builder setWeight(Integer weight) {
             this.weight = weight;
             return this;
         }

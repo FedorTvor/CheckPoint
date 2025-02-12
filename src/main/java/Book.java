@@ -1,12 +1,12 @@
 public class Book {
     private String author;
     private String title;
-    private int pages;
+    private Integer pages;
 
     public Book() {
     }
 
-    public Book(String author, String title, int pages) {
+    public Book(String author, String title, Integer pages) {
         this.author = author;
         this.title = title;
         this.pages = pages;
@@ -36,7 +36,7 @@ public class Book {
     public static class Builder {
         private String author;
         private String title;
-        private int pages;
+        private Integer pages;
 
         public Builder setAuthor(String author) {
             this.author = author;
@@ -48,7 +48,7 @@ public class Book {
             return this;
         }
 
-        public Builder setPages(int pages) {
+        public Builder setPages(Integer pages) {
             this.pages = pages;
             return this;
         }

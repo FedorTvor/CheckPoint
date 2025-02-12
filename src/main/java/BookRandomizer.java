@@ -3,14 +3,14 @@ import java.util.Random;
 public class BookRandomizer {
     private static final String[] AUTHORS = {"Jane Austen", "Harper Lee", "Scott Fitzgerald", "Gabriel Garcia", "Truman Capote"};
     private static final String[] TITLES = {"Pride and Prejudice", "To Kill a Mockingbird", "The Great Gatsby", "One Hundred Years of Solitude", "In Cold Blood"};
-    private static final int MIN_PAGES = 300;
-    private static final int MAX_PAGES = 1500;
+    private static final Integer MIN_PAGES = 300;
+    private static final Integer MAX_PAGES = 1500;
     private static final Random RANDOM = new Random();
 
-    public static Book generate(Book book){
+    public Book generate(){
         String author = getRandomAuthor();
         String title = getRandomTitle();
-        int pages = getRandomPages();
+        Integer pages = getRandomPages();
 
         return new Book.Builder()
                 .setAuthor(author)
@@ -29,7 +29,7 @@ public class BookRandomizer {
         return TITLES[index];
     }
 
-    private static int getRandomPages() {
+    private static Integer getRandomPages() {
         return MIN_PAGES + RANDOM.nextInt(MAX_PAGES - MIN_PAGES + 1);
     }
 }
