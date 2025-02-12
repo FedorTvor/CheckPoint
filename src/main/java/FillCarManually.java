@@ -6,8 +6,7 @@ public class FillCarManually implements Fill<Car> {
     public Car[] fill() {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Ведите число машин: ");
-        Integer countCar = InputHelp.InputInt(in);
+        Integer countCar = InputHelp.getInt("Ведите число машин: ", in);
 
         Car[] cars = null;
 
@@ -16,26 +15,15 @@ public class FillCarManually implements Fill<Car> {
         } else countCar = 0;
 
         for(int i = 0; i < countCar; i++) {
+            Integer power = InputHelp.getInt("Введите мошность: ", in);
 
-            System.out.println("Введите мошность: ");
-            Integer power = InputHelp.InputInt(in);
+            String model = InputHelp.getString("Введите модель: ", in);
 
-            System.out.println("Введите модель: ");
-            String model = in.nextLine();
+            Integer year = InputHelp.getInt("Введите год выпуска: ", in);
 
-            System.out.println("Введите год выпуска: ");
-            Integer year = InputHelp.InputInt(in);
+            cars[i] = Car.collectorClass(power, model, year);
 
-            if (!CheckHelp.carCheck(power, model, year)) {
-                System.out.println("Некоректно введённые данные");
-                i--;
-            } else {
-                cars[i] = new Car.BuildCAr()
-                        .setModel(model)
-                        .setPower(power)
-                        .setYearOfProduction(year)
-                        .build();
-            }
+            if(cars[i] == null) i--;
         }
         return cars;
     }

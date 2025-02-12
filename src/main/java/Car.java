@@ -14,9 +14,22 @@ public class Car {
         return model;
     }
 
-
     public Integer getYearOfProduction() {
         return yearOfProduction;
+    }
+
+    public static Car collectorClass(Integer power, String model, Integer yearOfProduction) {
+        Car car = null;
+        if (!CheckHelp.carCheck(power, model, yearOfProduction)) {
+            System.out.println("Невозможно создать машину с такими параметрами");
+        } else {
+             car = new Car.BuildCAr()
+                    .setModel(model)
+                    .setPower(power)
+                    .setYearOfProduction(yearOfProduction)
+                    .build();
+        }
+        return  car;
     }
 
     @Override

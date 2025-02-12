@@ -6,8 +6,7 @@ public class FillBookManually implements Fill<Book> {
     public Book[] fill() {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Ведите число книг: ");
-        Integer countBooks = InputHelp.InputInt(in);
+        Integer countBooks = InputHelp.getInt("Ведите число книг: ", in);
 
         Book[] books = null;
 
@@ -16,26 +15,15 @@ public class FillBookManually implements Fill<Book> {
         } else countBooks = 0;
 
         for(int i = 0; i < countBooks; i++) {
+            String author = InputHelp.getString("Введите автора книги: ", in);
 
-            System.out.println("Введите автора книги: ");
-            String author = in.nextLine();
+            String title = InputHelp.getString("Введите название книги: ", in);
 
-            System.out.println("Введите название книги: ");
-            String title = in.nextLine();
+            Integer pages = InputHelp.getInt("Введите количество страниц книги: ", in);
 
-            System.out.println("Введите количество страниц книги: ");
-            Integer pages = InputHelp.InputInt(in);
+            books[i] = Book.collectorClass(author,title, pages);
 
-            if(!CheckHelp.bookCheck(author, title, pages)) {
-                System.out.println("Невозможно создать книги с такими параметрами");
-                i--;
-            } else {
-                books[i] = new Book.Builder()
-                        .setAuthor(author)
-                        .setPages(pages)
-                        .setTitle(title)
-                        .build();
-            }
+            if(books[i] == null) i--;
         }
 
         return books;

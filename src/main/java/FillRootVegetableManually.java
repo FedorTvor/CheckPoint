@@ -6,8 +6,7 @@ public class FillRootVegetableManually implements Fill<RootVegetable> {
     public RootVegetable[] fill() {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Ведите число корнеплодов: ");
-        Integer countRootVegetables = InputHelp.InputInt(in);
+        Integer countRootVegetables = InputHelp.getInt("Ведите число корнеплодов: ", in);
 
         RootVegetable[] rootVegetables = null;
 
@@ -16,26 +15,15 @@ public class FillRootVegetableManually implements Fill<RootVegetable> {
         } else countRootVegetables = 0;
 
         for(int i = 0; i < countRootVegetables; i++) {
+            String type = InputHelp.getString("Введите тип корнеплода: ", in);
 
-            System.out.println("Введите тип корнеплода: ");
-            String type = in.nextLine();
+            String colour = InputHelp.getString("Введите цвет корнеплода: ", in);
 
-            System.out.println("Введите цвет корнеплода: ");
-            String colour = in.nextLine();
+            Integer weight = InputHelp.getInt("Введите вес корнеплода: ", in);
 
-            System.out.println("Введите вес корнеплода: ");
-            Integer weight = InputHelp.InputInt(in);
+            rootVegetables[i] = RootVegetable.collectorClass(type, colour, weight);
 
-            if(!CheckHelp.rootVegetableCheck(type, colour, weight)) {
-                System.out.println("Невозможно создать корнеплод с такими параметрами");
-                i--;
-            } else {
-                rootVegetables[i] = new RootVegetable.Builder()
-                        .setColour(colour)
-                        .setType(type)
-                        .setWeight(weight)
-                        .build();
-            }
+            if(rootVegetables[i] == null) i--;
         }
 
         return rootVegetables;
