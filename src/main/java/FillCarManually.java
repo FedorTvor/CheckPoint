@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class FillCarManually implements FillCar {
+public class FillCarManually implements Fill<Car> {
 
     @Override
     public Car[] fill() {
