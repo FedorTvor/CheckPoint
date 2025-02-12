@@ -30,12 +30,7 @@ public class FillBookManually implements Fill<Book> {
             Integer pages = InputHelp.getIntField(MES_PAGES, in);
 
             if(CheckHelp.bookCheck(author, title, pages)) {
-                /*books[j] = new Book.Builder()   // глюк компиляции зарефачить на createInstance()
-                        .setAuthor(author)
-                        .setPages(pages)
-                        .setTitle(title)
-                        .build();*/
-                books[j] = new Book.createInstance(author, title, pages);
+                books[j] = Book.createInstance(author, title, pages);
                 j++;
             } else {
                 System.out.println(MES_ERROR_BUILD);
