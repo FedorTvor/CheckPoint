@@ -17,8 +17,8 @@ public class Main {
         //Сам цикл с ветвлением и ввод пользователя
         while (step) {
             Arrays.stream(masString).forEach(System.out::println);
-            String choise = scanner.next();//взаимодействие с пользователем
-            switch (choise) {
+            String choice = scanner.next();//взаимодействие с пользователем
+            switch (choice) {
                 case "1":
                     System.out.println("заполнение исходного массив");
                     break;

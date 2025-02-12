@@ -1,12 +1,13 @@
 import java.util.Random;
 
-public class BookRandomizer {
+public class BookRandomizer implements ItemRandomizer<Book> {
     private static final String[] AUTHORS = {"Jane Austen", "Harper Lee", "Scott Fitzgerald", "Gabriel Garcia", "Truman Capote"};
     private static final String[] TITLES = {"Pride and Prejudice", "To Kill a Mockingbird", "The Great Gatsby", "One Hundred Years of Solitude", "In Cold Blood"};
     private static final Integer MIN_PAGES = 300;
     private static final Integer MAX_PAGES = 1500;
     private static final Random RANDOM = new Random();
 
+    @Override
     public Book generate(){
         String author = getRandomAuthor();
         String title = getRandomTitle();

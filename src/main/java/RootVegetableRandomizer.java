@@ -1,12 +1,13 @@
 import java.util.Random;
 
-public class RootVegetableRandomizer {
+public class RootVegetableRandomizer implements ItemRandomizer<RootVegetable> {
     private static final String[] TYPES = {"potato", "onion", "daikon", "parsnip",};
     private static final String[] COLOURS = {"yellow", "red", "purple", "white",};
     private static final Integer MIN_WEIGHT = 50;
     private static final Integer MAX_WEIGHT = 300;
     private static final Random RANDOM = new Random();
 
+    @Override
     public RootVegetable generate() {
         String type = getRandomType();
         String colour = getRandomColour();

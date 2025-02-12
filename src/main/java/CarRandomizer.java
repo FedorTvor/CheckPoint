@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class CarRandomizer {
+public class CarRandomizer implements ItemRandomizer<Car>{
     private static final String[] MODELS = {"Ford Bronco", "Haval Jolion", "Audi A3", "Mercedes-Benz V-Class", "Lexus LS"};
     private static final Integer MIN_POWER = 100;
     private static final Integer MAX_POWER = 400;
@@ -8,6 +8,7 @@ public class CarRandomizer {
     private static final Integer MAX_YEAR = 2025;
     private static final Random RANDOM = new Random();
 
+    @Override
     public Car generate() {
         Integer power = getRandomPower();
         String model = getRandomModel();
