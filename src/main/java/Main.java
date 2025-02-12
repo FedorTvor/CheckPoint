@@ -7,11 +7,13 @@ public class Main {
 
 
         Menu menu = new Menu();
-        menu.addAction(1, new ManuallyFillArrayAction());
-        menu.addAction(2, new RandomFillArrayAction());
-        menu.addAction(3, new PrintArrayAction());
-        menu.addAction(0, new ExitAction());
+        menu.reopen_after_submenu_closes=true;
+        menu.addAction("1", "Заполнение массива объектов вручную", new ManuallyFillArrayAction());
+        menu.addAction("2", "Создание массива объектов с рандомными значениями", new RandomFillArrayAction());
+        menu.addAction("3", "Вывод массива объектов на экран", new PrintArrayAction());
+        menu.addAction("4", "Сортировка массива", null);//TODO
+        menu.addAction("5", "Выход", null);
 
-        menu.display();
+        menu.execute();
     }
 }
