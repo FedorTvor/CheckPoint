@@ -55,6 +55,14 @@ public class Car {
             car.yearOfProduction = this.yearOfProduction;
             return car;
         }
+
+        public static Car createInstance(Integer power, String model, Integer yearOfProduction) {
+            return new Car.BuildCAr()
+                    .setModel(model)
+                    .setPower(power)
+                    .setYearOfProduction(yearOfProduction)
+                    .build();
+        }
     }
 }
 

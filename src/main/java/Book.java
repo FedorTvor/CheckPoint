@@ -60,5 +60,13 @@ public class Book {
             book.pages = this.pages;
             return book;
         }
+
+        public static Book createInstance(String author, String title, Integer pages) {
+            return new Book.Builder()
+                    .setAuthor(author)
+                    .setPages(pages)
+                    .setTitle(title)
+                    .build();
+        }
     }
 }
