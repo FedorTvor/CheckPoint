@@ -60,13 +60,13 @@ public class RootVegetable {
             rootVegetable.weight = this.weight;
             return rootVegetable;
         }
+    }
 
-        public static RootVegetable createInstance(String type, String colour, Integer weight) {
-            return new RootVegetable.Builder()
-                    .setColour(colour)
-                    .setType(type)
-                    .setWeight(weight)
-                    .build();
-        }
+    public static RootVegetable createInstance(String type, String colour, Integer weight) {
+        return new RootVegetable.Builder()
+                .setColour(colour)
+                .setType(type)
+                .setWeight(weight)
+                .build();
     }
 }
