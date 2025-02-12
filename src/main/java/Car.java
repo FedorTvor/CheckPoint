@@ -18,20 +18,6 @@ public class Car {
         return yearOfProduction;
     }
 
-    public static Car collectorClass(Integer power, String model, Integer yearOfProduction) {
-        Car car = null;
-        if (!CheckHelp.carCheck(power, model, yearOfProduction)) {
-            System.out.println("Невозможно создать машину с такими параметрами");
-        } else {
-             car = new Car.BuildCAr()
-                    .setModel(model)
-                    .setPower(power)
-                    .setYearOfProduction(yearOfProduction)
-                    .build();
-        }
-        return  car;
-    }
-
     @Override
     public String toString() {
         return "Car{" +
@@ -39,6 +25,14 @@ public class Car {
                 ", model='" + model + '\'' +
                 ", yearOfProduction=" + yearOfProduction +
                 '}';
+    }
+
+    public static Car createInstance(Integer power, String model, Integer yearOfProduction) {
+        return new Car.BuildCAr()
+                .setModel(model)
+                .setPower(power)
+                .setYearOfProduction(yearOfProduction)
+                .build();
     }
 
     public static class BuildCAr{

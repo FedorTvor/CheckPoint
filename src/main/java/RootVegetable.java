@@ -33,18 +33,12 @@ public class RootVegetable {
                 '}';
     }
 
-    public static RootVegetable collectorClass(String type, String colour, Integer weight) {
-        RootVegetable rootVegetables = null;
-        if(!CheckHelp.rootVegetableCheck(type, colour, weight)) {
-            System.out.println("Невозможно создать корнеплод с такими параметрами");
-        } else {
-            rootVegetables = new RootVegetable.Builder()
-                    .setColour(colour)
-                    .setType(type)
-                    .setWeight(weight)
-                    .build();
-        }
-        return rootVegetables;
+    public static RootVegetable createInstance(String type, String colour, Integer weight) {
+        return new RootVegetable.Builder()
+                .setColour(colour)
+                .setType(type)
+                .setWeight(weight)
+                .build();
     }
 
     public static class Builder{

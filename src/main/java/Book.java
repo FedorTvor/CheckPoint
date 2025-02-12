@@ -33,18 +33,12 @@ public class Book {
                 '}';
     }
 
-    public static Book collectorClass(String author, String title, Integer pages) {
-        Book book = null;
-        if(!CheckHelp.bookCheck(author, title, pages)) {
-            System.out.println("Невозможно создать книги с такими параметрами");
-        } else {
-            book = new Book.Builder()
-                    .setAuthor(author)
-                    .setPages(pages)
-                    .setTitle(title)
-                    .build();
-        }
-        return  book;
+    public static Book createInstance(String author, String title, Integer pages) {
+        return new Book.Builder()
+                .setAuthor(author)
+                .setPages(pages)
+                .setTitle(title)
+                .build();
     }
 
     public static class Builder {
