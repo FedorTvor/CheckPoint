@@ -2,13 +2,10 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class Writer1<T> {
+public class WriterFile<T> {
     private File name;
 
-    public Writer1() {
-    }
-
-    public Writer1(File name) {
+    public WriterFile(File name) {
         this.name = name;
     }
 
@@ -26,12 +23,13 @@ public class Writer1<T> {
             System.out.println(this.name + "ошибка создания" + e);
         }
     }
-    public <T> void writeText(T[] t, File file) {
+    public <T> void writeText(T[] t) {
         try {
-            //
-            BufferedWriter bf = new BufferedWriter(new FileWriter(file, true));
-            bf.append(Arrays.toString(t));
-            bf.newLine();
+            BufferedWriter bf = new BufferedWriter(new FileWriter(this.name, true));
+            for (T element : t) {
+                bf.append(element.toString());
+                bf.newLine();
+            }
             bf.close();
         } catch (IOException e) {
             System.out.println(this.name + " ошибка написания " + e);
