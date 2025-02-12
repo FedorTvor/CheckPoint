@@ -14,7 +14,6 @@ public class Car {
         return model;
     }
 
-
     public Integer getYearOfProduction() {
         return yearOfProduction;
     }
@@ -26,6 +25,14 @@ public class Car {
                 ", model='" + model + '\'' +
                 ", yearOfProduction=" + yearOfProduction +
                 '}';
+    }
+
+    public static Car createInstance(Integer power, String model, Integer yearOfProduction) {
+        return new Car.BuildCAr()
+                .setModel(model)
+                .setPower(power)
+                .setYearOfProduction(yearOfProduction)
+                .build();
     }
 
     public static class BuildCAr{

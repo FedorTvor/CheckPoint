@@ -33,6 +33,14 @@ public class RootVegetable {
                 '}';
     }
 
+    public static RootVegetable createInstance(String type, String colour, Integer weight) {
+        return new RootVegetable.Builder()
+                .setColour(colour)
+                .setType(type)
+                .setWeight(weight)
+                .build();
+    }
+
     public static class Builder{
         private String type;
         private String colour;

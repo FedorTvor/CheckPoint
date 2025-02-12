@@ -33,6 +33,14 @@ public class Book {
                 '}';
     }
 
+    public static Book createInstance(String author, String title, Integer pages) {
+        return new Book.Builder()
+                .setAuthor(author)
+                .setPages(pages)
+                .setTitle(title)
+                .build();
+    }
+
     public static class Builder {
         private String author;
         private String title;

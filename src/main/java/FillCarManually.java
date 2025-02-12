@@ -1,13 +1,18 @@
 import java.util.Scanner;
 
-public class FillCarManually implements FillCar {
+public class FillCarManually implements Fill<Car> {
+    final String MES_COUNT = "Ведите число машин: ";
+    final String MES_POWER = "Введите мошность: ";
+    final String MES_MODEL = "Введите модель: ";
+    final String MES_YEAR = "Введите год выпуска: ";
+    final String MES_ERROR_BUILD = "Невозможно создать машину с такими параметрами";
 
     @Override
     public Car[] fill() {
+
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Ведите число машин: ");
-        Integer countCar = InputHelp.InputInt(in);
+        Integer countCar = InputHelp.getIntField(MES_COUNT, in);
 
         Car[] cars = null;
 
@@ -15,28 +20,30 @@ public class FillCarManually implements FillCar {
             cars = new Car[countCar];
         } else countCar = 0;
 
+        int j = 0;
+
         for(int i = 0; i < countCar; i++) {
+            Integer power = InputHelp.getIntField(MES_POWER, in);
 
-            System.out.println("Введите мошность: ");
-            Integer power = InputHelp.InputInt(in);
+            String model = InputHelp.getStringField(MES_MODEL, in);
 
-            System.out.println("Введите модель: ");
-            String model = in.nextLine();
+            Integer year = InputHelp.getIntField(MES_YEAR, in);
 
-            System.out.println("Введите год выпуска: ");
-            Integer year = InputHelp.InputInt(in);
 
-            if (!CheckHelp.carCheck(power, model, year)) {
-                System.out.println("Некоректно введённые данные");
-                i--;
+            if (CheckHelp.carCheck(power, model, year)) {
+                cars[j] = Car.createInstance(power, model, year);
+                j++;
             } else {
-                cars[i] = new Car.BuildCAr()
-                        .setModel(model)
-                        .setPower(power)
-                        .setYearOfProduction(year)
-                        .build();
+                System.out.println(MES_ERROR_BUILD);
             }
         }
-        return cars;
+
+        Car[] cars_result = null;
+        if(j > 0) {
+            cars_result = new Car[j];
+            System.arraycopy(cars, 0, cars_result, 0, j);
+        }
+
+        return cars_result;
     }
 }
