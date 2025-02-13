@@ -65,7 +65,6 @@ public class RandomFillArrayAction implements MenuAction {
                     break;
             }
         }
-        System.out.println("выход");
     }
 
     private int findFirst(Storage<? extends Object>storage, int size){

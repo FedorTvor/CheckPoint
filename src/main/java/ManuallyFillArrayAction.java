@@ -54,7 +54,6 @@ public class ManuallyFillArrayAction implements MenuAction{
                     System.arraycopy(vegetables, 0, objects, start_index,vegetables.length);
                     step = false;
                     }while(false);
-
                     break;
                 case "0":
                     step = false;
