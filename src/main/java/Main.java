@@ -19,11 +19,13 @@ public class Main {
         
         Menu menu = new Menu();
         menu.reopen_after_submenu_closes=true;
-        menu.addAction("1", "Заполнение массива объектов вручную", new ManuallyFillArrayAction());
-        menu.addAction("2", "Создание массива объектов с рандомными значениями", new RandomFillArrayAction());
-        menu.addAction("3", "Вывод массива объектов на экран", print_array_menu);
-        menu.addAction("4", "Сортировка массива", null);//TODO
-        menu.addAction("5", "Выход", null);
+        menu.addAction("1", "Заполнение массива объектов из файла", new ManuallyFillArrayAction());
+        menu.addAction("2", "Заполнение массива объектов вручную", new ManuallyFillArrayAction());
+        menu.addAction("3", "Заполнение массива объектов рандомными значениями", new RandomFillArrayAction());
+        menu.addAction("4", "Вывод массива объектов на экран", print_array_menu);
+        menu.addAction("5", "Сортировка массива", null);//TODO
+        menu.addAction("6", "Поиск элемента в массиве", new SearchAction());
+        menu.addAction("0", "Выход", new ExitAction());
 
         menu.execute();
     }
