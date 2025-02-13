@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class ReaderFile {
 
@@ -14,11 +15,12 @@ public class ReaderFile {
         }
         reader.close();
         T[] objects = (T[]) Array.newInstance(type, count);
-        reader = new BufferedReader(new FileReader(filePath)); // Снова открываем файл
+        reader = new BufferedReader(new FileReader(filePath));
         int index = 0;
         while ((line = reader.readLine()) != null) {
             objects[index++] = parseObject(line, type);
         }
+        Arrays.stream(objects).forEach(System.out::println);
         reader.close();
         return objects;
     }

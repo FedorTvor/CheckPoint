@@ -35,6 +35,7 @@ public class WriterFile<T> {
             System.out.println(this.name + " ошибка написания " + e);
         }
     }
+
     public static void deleteFile(String nameFile) {
         File nameFileExample = new File(nameFile);
         if (nameFileExample.exists()) {
