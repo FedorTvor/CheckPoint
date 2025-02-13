@@ -4,11 +4,8 @@ public class RandomFillArrayAction implements MenuAction {
 
     @Override
     public void execute(){
-        //Storage storage = Storage.getInstance();
-        //Object[] objects = storage.getObjects();
         Scanner scanner = new Scanner(System.in);
         boolean step = true;
-        
 
         System.out.print("Введите размер массива: ");
         int size = getIntInput(scanner);
@@ -23,13 +20,12 @@ public class RandomFillArrayAction implements MenuAction {
             String choice = scanner.next();
             switch (choice) {
                 case "1":
-                    do{
+                    do{// Записываем рандомные автомобили
                     Storage<Car> storage= Storage.<Car>getInstance(Main.datatype.CAR);
                     int start_index=findFirst(storage,size);
                     Object[] objects = storage.getObjects();
                     ItemRandomizer<Car> carRandomizer = new CarRandomizer();
 
-                    
                     for (int i = start_index; i < objects.length; i++) {
                         objects[i] = carRandomizer.generate();
                     }
@@ -38,8 +34,7 @@ public class RandomFillArrayAction implements MenuAction {
                     break;
                 case "2":
                     System.out.println("Выбран Книга");
-                    do{
-                    //Book
+                    do{// Записываем рандомные книги
                     Storage<Book> storage= Storage.<Book>getInstance(Main.datatype.BOOK);
                     int start_index=findFirst(storage,size);
                     Object[] objects = storage.getObjects();
@@ -53,11 +48,10 @@ public class RandomFillArrayAction implements MenuAction {
                     break;
                 case "3":
                     System.out.println("Выбран Корнепллод");
-                    do{
+                    do{// Записываем рандомные корнеплоды
                     Storage<RootVegetable> storage= Storage.<RootVegetable>getInstance(Main.datatype.ROOTVEGETABLE);
                     int start_index=findFirst(storage,size);
                     Object[] objects = storage.getObjects();
-
                     ItemRandomizer<RootVegetable> rootVegetableRandomizer = new RootVegetableRandomizer();
 
                     for (int i = start_index; i < objects.length; i++) {
@@ -71,7 +65,6 @@ public class RandomFillArrayAction implements MenuAction {
                     break;
             }
         }
-        System.out.println("выход");
     }
 
     private int findFirst(Storage<? extends Object>storage, int size){

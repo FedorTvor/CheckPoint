@@ -1,12 +1,12 @@
 import java.util.Random;
 
 public class CarRandomizer implements ItemRandomizer<Car>{
-    private static final String[] MODELS = {"Ford Bronco", "Haval Jolion", "Audi A3", "Mercedes-Benz V-Class", "Lexus LS"};
-    private static final Integer MIN_POWER = 100;
-    private static final Integer MAX_POWER = 400;
-    private static final Integer MIN_YEAR = 2000;
-    private static final Integer MAX_YEAR = 2025;
-    private static final Random RANDOM = new Random();
+    private final String[] models = {"Ford Bronco", "Haval Jolion", "Audi A3", "Mercedes-Benz V-Class", "Lexus LS"};
+    private final Integer minPower = 100;
+    private final Integer maxPower = 400;
+    private final Integer minYear = 2000;
+    private final Integer maxYear = 2025;
+    private final Random random = new Random();
 
     @Override
     public Car generate() {
@@ -21,16 +21,16 @@ public class CarRandomizer implements ItemRandomizer<Car>{
                 .build();
     }
 
-    private static Integer getRandomPower() {
-        return MIN_POWER + RANDOM.nextInt(MAX_POWER - MIN_POWER + 1);
+    private Integer getRandomPower() {
+        return minPower + random.nextInt(maxPower - minPower + 1);
     }
 
-    private static String getRandomModel() {
-        int index = RANDOM.nextInt(MODELS.length);
-        return MODELS[index];
+    private String getRandomModel() {
+        int index = random.nextInt(models.length);
+        return models[index];
     }
 
-    private static Integer getRandomYear() {
-        return MIN_YEAR + RANDOM.nextInt(MAX_YEAR - MIN_YEAR + 1);
+    private Integer getRandomYear() {
+        return minYear + random.nextInt(maxYear - minYear + 1);
     }
 }
