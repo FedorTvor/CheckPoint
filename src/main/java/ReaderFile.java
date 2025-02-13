@@ -14,7 +14,7 @@ public class ReaderFile {
         }
         reader.close();
         T[] objects = (T[]) Array.newInstance(type, count);
-        reader = new BufferedReader(new FileReader(filePath)); // Снова открываем файл
+        reader = new BufferedReader(new FileReader(filePath)); // РЎРЅРѕРІР° РѕС‚РєСЂС‹РІР°РµРј С„Р°Р№Р»
         int index = 0;
         while ((line = reader.readLine()) != null) {
             objects[index++] = parseObject(line, type);
@@ -30,7 +30,7 @@ public class ReaderFile {
         } else if (type == RootVegetable.class) {
             return (T) new ParseRootVegetable().parse(line);
         } else {
-            throw new IllegalArgumentException("Неподдерживаемый тип: " + type.getName());
+            throw new IllegalArgumentException("РќРµРїРѕРґРґРµСЂР¶РёРІР°РµРјС‹Р№ С‚РёРї: " + type.getName());
         }
     }
 }
