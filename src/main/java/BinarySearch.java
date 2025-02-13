@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Arrays;
 import java.lang.reflect.Array;
 import java.util.stream.Collectors;
+import java.lang.RuntimeException;
 
 class BinarySearch<O, V>{
     private ValueGetter<O, V> get;
@@ -83,6 +84,9 @@ class BinarySearch<O, V>{
             
             if (get==null || comp==null){
                 //TODO throw
+            }
+            if (list.size()<=0){
+                throw new RuntimeException("No Objects to sort!");
             }
             
             result.get=get;
