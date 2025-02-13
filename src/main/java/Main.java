@@ -17,6 +17,16 @@ public class Main {
         print_array_menu.addAction("3", "Корнепллод",new PrintArrayAction<RootVegetable>(datatype.ROOTVEGETABLE));
         print_array_menu.addAction("0", "Отмена", null);
         
+        Menu sort_menu=new Menu();
+        print_array_menu.prelude="Выберите тип данных";
+        print_array_menu.addAction("1", "Автомобиль",new Menu().
+            addAction("1", "По году", new SearchAction()
+        
+        );
+        print_array_menu.addAction("2", "Книга",new PrintArrayAction<Book>(datatype.BOOK));
+        print_array_menu.addAction("3", "Корнепллод",new PrintArrayAction<RootVegetable>(datatype.ROOTVEGETABLE));
+        print_array_menu.addAction("0", "Отмена", null);
+        
         Menu menu = new Menu();
         menu.reopen_after_submenu_closes=true;
         menu.addAction("1", "Заполнение массива объектов вручную", new ManuallyFillArrayAction());

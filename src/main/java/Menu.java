@@ -11,11 +11,13 @@ public class Menu implements MenuAction{
     public String wrong="Неверный выбор. Попробуйте снова.";
     public boolean reopen_after_submenu_closes=false;
     
-    public void removeAction(String key){
+    public Menu removeAction(String key){
         choices.remove(key);
+        return this;
     }
-    public void clearActions(){
+    public Menu clearActions(){
         choices.clear();
+        return this;
     }
     
     //private Map<Integer, MenuAction> actions = new HashMap<>();
@@ -23,8 +25,9 @@ public class Menu implements MenuAction{
     public Menu() {
     }
 
-    public void addAction(String key, String name, MenuAction action){
+    public Menu addAction(String key, String name, MenuAction action){
         choices.put(key, new Pair<String, MenuAction>(name, action));
+        return this;
     }
 
     /*
