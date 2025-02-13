@@ -1,27 +1,14 @@
+import java.util.Map;
+
 public class ParseBook {
+	private final ParserHelper parserHelper = new ParserHelper();
+
 	public Book parse(String line) {
-		String[] parts = line.substring(line.indexOf("{") + 1, line.indexOf("}")).split(",");
-		String author = null;
-		String title = null;
-		Integer pages = null;
+		Map<String, String> keyValueMap = parserHelper.parseKeyValuePairs(line);
+		String author = keyValueMap.get("author");
+		String title = keyValueMap.get("title");
+		Integer pages = parserHelper.parseInteger(keyValueMap.get("pages"));
 
-		for (String part : parts) {
-			String[] keyValue = part.split("=");
-			String key = keyValue[0].trim();
-			String value = keyValue[1].trim().replaceAll("'", "");
-
-			if (key.contains("author")) {
-				author = value;
-			} else if (key.contains("title")) {
-				title = value;
-			} else if (key.contains("pages")) {
-				try {
-					pages = Integer.parseInt(value);
-				} catch (NumberFormatException e) {
-					throw new RuntimeException(e);
-				}
-			}
-		}
-		return new Book.Builder().setAuthor(author).setTitle(title).setPages(pages).build();
+		return Book.createInstance(author,title,pages);
 	}
 }

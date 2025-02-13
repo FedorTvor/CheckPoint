@@ -3,9 +3,18 @@ import java.util.Scanner;
 
 public class Main {
     public static enum datatype{
-        CAR,
-        BOOK,
-        ROOTVEGETABLE
+        CAR(Car.class),
+        BOOK(Book.class),
+        ROOTVEGETABLE(RootVegetable.class);
+        private final Class<?> clazz;
+
+        datatype(Class<?> clazz) {
+            this.clazz = clazz;
+        }
+
+        public String getClassName() {
+            return clazz.getSimpleName();
+        }
     }
     public static void main(String[] args) {
         //Storage storage = Storage.getInstance();

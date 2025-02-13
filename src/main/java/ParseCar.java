@@ -1,30 +1,14 @@
+import java.util.Map;
+
 public class ParseCar {
+	private final ParserHelper parserHelper = new ParserHelper();
+
 	public Car parse(String line) {
-		String[] parts = line.substring(line.indexOf("{") + 1, line.indexOf("}")).split(",");
-		Integer power = null;
-		String model = null;
-		Integer year = null;
+		Map<String, String> keyValueMap = parserHelper.parseKeyValuePairs(line);
+		Integer power = parserHelper.parseInteger(keyValueMap.get("power"));
+		String model = keyValueMap.get("model");
+		Integer year = parserHelper.parseInteger(keyValueMap.get("yearOfProduction"));
 
-		for (String part : parts) {
-			String[] keyValue = part.split("=");
-			String key = keyValue[0].trim();
-			String value = keyValue[1].trim().replaceAll("'", "");
-
-			if (key.contains("power")) {
-				try {
-					power = Integer.parseInt(value);
-				} catch (NumberFormatException e) {
-				}
-			} else if (key.contains("model")) {
-				model = value;
-			} else if (key.contains("yearOfProduction")) {
-				try {
-					year = Integer.parseInt(value);
-				} catch (NumberFormatException e) {
-					throw new RuntimeException(e);
-				}
-			}
-		}
-		return new Car.BuildCAr().setPower(power).setModel(model).setYearOfProduction(year).build();
+		return Car.createInstance(power,model,year);
 	}
 }
