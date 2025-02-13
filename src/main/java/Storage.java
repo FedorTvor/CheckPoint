@@ -21,7 +21,7 @@ public class Storage<T> {
     }
 
     public void expandArray(int addSize) {
-        Object[] newArray = new Object[objects.length + addSize];///*(T[])*/ Array.newInstance(new Class<T>(),objects.length + addSize);//new T[objects.length + addSize];
+        Object[] newArray = new Object[objects.length + addSize];
         System.arraycopy(objects, 0, newArray, 0, objects.length);
         objects = newArray;
     }

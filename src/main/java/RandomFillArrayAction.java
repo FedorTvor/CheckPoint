@@ -4,14 +4,14 @@ public class RandomFillArrayAction implements MenuAction {
 
     @Override
     public void execute(){
-        //Storage storage = Storage.getInstance();
-        //Object[] objects = storage.getObjects();
+
         Scanner scanner = new Scanner(System.in);
         boolean step = true;
         
 
         System.out.print("Введите размер массива: ");
         int size = getIntInput(scanner);
+
 
         while (step){
             System.out.println("Выберите тип данных для массива:");
