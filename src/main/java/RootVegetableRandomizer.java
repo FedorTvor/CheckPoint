@@ -1,11 +1,11 @@
 import java.util.Random;
 
 public class RootVegetableRandomizer implements ItemRandomizer<RootVegetable> {
-    private static final String[] TYPES = {"potato", "onion", "daikon", "parsnip",};
-    private static final String[] COLOURS = {"yellow", "red", "purple", "white",};
-    private static final Integer MIN_WEIGHT = 50;
-    private static final Integer MAX_WEIGHT = 300;
-    private static final Random RANDOM = new Random();
+    private final String[] types = {"potato", "onion", "daikon", "parsnip",};
+    private final String[] colours = {"yellow", "red", "purple", "white",};
+    private final Integer minWeight = 50;
+    private final Integer maxWeight = 300;
+    private final Random random = new Random();
 
     @Override
     public RootVegetable generate() {
@@ -20,17 +20,17 @@ public class RootVegetableRandomizer implements ItemRandomizer<RootVegetable> {
                 .build();
     }
 
-    private static String getRandomType() {
-        int index = RANDOM.nextInt(TYPES.length);
-        return TYPES[index];
+    private String getRandomType() {
+        int index = random.nextInt(types.length);
+        return types[index];
     }
 
-    private static String getRandomColour() {
-        int index = RANDOM.nextInt(COLOURS.length);
-        return COLOURS[index];
+    private String getRandomColour() {
+        int index = random.nextInt(colours.length);
+        return colours[index];
     }
 
-    private static Integer getRandomWeight() {
-        return MIN_WEIGHT + RANDOM.nextInt(MAX_WEIGHT - MIN_WEIGHT + 1);
+    private Integer getRandomWeight() {
+        return minWeight + random.nextInt(maxWeight - minWeight + 1);
     }
 }
