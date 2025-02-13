@@ -4,25 +4,14 @@ public class RandomFillArrayAction implements MenuAction {
 
     @Override
     public void execute(){
-        Storage storage = Storage.getInstance();
-        Object[] objects = storage.getObjects();
 
         Scanner scanner = new Scanner(System.in);
         boolean step = true;
-        int startIndex = 0;
+        
 
         System.out.print("Введите размер массива: ");
         int size = getIntInput(scanner);
 
-        // Найти первое свободное место в массиве
-        while (startIndex < objects.length && objects[startIndex] != null) {
-            startIndex++;
-        }
-        // Если места нет увеличиваем размер массива
-        if (startIndex >= objects.length) {
-            storage.expandArray(size);
-            objects = storage.getObjects();
-        }
 
         while (step){
             System.out.println("Выберите тип данных для массива:");
@@ -34,31 +23,48 @@ public class RandomFillArrayAction implements MenuAction {
             String choice = scanner.next();
             switch (choice) {
                 case "1":
+                    do{
+                    Storage<Car> storage= Storage.<Car>getInstance(Main.datatype.CAR);
+                    int start_index=findFirst(storage,size);
+                    Object[] objects = storage.getObjects();
                     ItemRandomizer<Car> carRandomizer = new CarRandomizer();
 
-                    for (int i = startIndex; i < objects.length; i++) {
+                    
+                    for (int i = start_index; i < objects.length; i++) {
                         objects[i] = carRandomizer.generate();
                     }
                     step = false;
+                    }while(false);
                     break;
                 case "2":
                     System.out.println("Выбран Книга");
+                    do{
+                    //Book
+                    Storage<Book> storage= Storage.<Book>getInstance(Main.datatype.BOOK);
+                    int start_index=findFirst(storage,size);
+                    Object[] objects = storage.getObjects();
                     ItemRandomizer<Book> bookRandomizer = new BookRandomizer();
 
-                    for (int i = startIndex; i < objects.length; i++) {
+                    for (int i = start_index; i < objects.length; i++) {
                         objects[i] = bookRandomizer.generate();
                     }
                     step = false;
+                    }while(false);
                     break;
                 case "3":
                     System.out.println("Выбран Корнепллод");
+                    do{
+                    Storage<RootVegetable> storage= Storage.<RootVegetable>getInstance(Main.datatype.ROOTVEGETABLE);
+                    int start_index=findFirst(storage,size);
+                    Object[] objects = storage.getObjects();
 
                     ItemRandomizer<RootVegetable> rootVegetableRandomizer = new RootVegetableRandomizer();
 
-                    for (int i = startIndex; i < objects.length; i++) {
+                    for (int i = start_index; i < objects.length; i++) {
                         objects[i] = rootVegetableRandomizer.generate();
                     }
                     step = false;
+                    }while(false);
                     break;
                 case "0":
                     step = false;
@@ -66,6 +72,21 @@ public class RandomFillArrayAction implements MenuAction {
             }
         }
         System.out.println("выход");
+    }
+
+    private int findFirst(Storage<? extends Object>storage, int size){
+        Object[] objects=storage.getObjects();
+        int startIndex = 0;
+        // Найти первое свободное место в массиве
+        while (startIndex < objects.length && objects[startIndex] != null) {
+            startIndex++;
+        }
+        // Если места нет увеличиваем размер массива
+        if (startIndex >= objects.length) {
+            storage.expandArray(size);
+            objects = storage.getObjects();
+        }
+        return startIndex;
     }
 
     private int getIntInput(Scanner scanner) {
