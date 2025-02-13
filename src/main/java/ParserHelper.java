@@ -22,7 +22,7 @@ class ParserHelper {
 		try {
 			return Integer.parseInt(value);
 		} catch (NumberFormatException e) {
-			return null;
+			System.out.println("Ошибка ввода: " + e);
 		}
 	}
 }
