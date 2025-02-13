@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.lang.RuntimeException;
 
 class BinarySearch<O, V>{
+    //Ищет объект совпадающий с предоставленным значением
     private ValueGetter<O, V> get;
     private CustomComparator<V> comp;
     private O[] arr;//should be sorted
