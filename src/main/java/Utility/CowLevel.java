@@ -3,6 +3,7 @@ package Utility;
 import Comparator.CompObjectByValue;
 import Comparator.CustomComparator;
 import Class.Car;
+import Tools.BinarySearch;
 
 import java.util.List;
 import java.util.LinkedList;

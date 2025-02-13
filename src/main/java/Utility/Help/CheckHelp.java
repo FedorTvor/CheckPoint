@@ -1,4 +1,4 @@
-package Utility;
+package Utility.Help;
 
 public class CheckHelp {
     public static Boolean carCheck(Integer power, String model, Integer year) {

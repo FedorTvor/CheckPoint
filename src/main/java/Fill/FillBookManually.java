@@ -1,8 +1,8 @@
 package Fill;
 
 import Class.Book;
-import Utility.InputHelp;
-import Utility.CheckHelp;
+import Utility.Help.InputHelp;
+import Utility.Help.CheckHelp;
 
 import java.util.Scanner;
 

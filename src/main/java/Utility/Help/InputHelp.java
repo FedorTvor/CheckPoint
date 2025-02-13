@@ -1,4 +1,4 @@
-package Utility;
+package Utility.Help;
 
 import java.util.Scanner;
 

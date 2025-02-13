@@ -1,8 +1,8 @@
-package Utility;
+package Tools;
 
 import Comparator.CustomComparator;
 import Comparator.CompObjectByValue;
-import Sort.Sort;
+import Utility.ValueGetter;
 
 import java.util.Optional;
 import java.lang.String;

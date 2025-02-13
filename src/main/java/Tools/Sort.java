@@ -1,4 +1,4 @@
-package Sort;
+package Tools;
 
 import Comparator.CustomComparator;
 
