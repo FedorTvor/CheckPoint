@@ -7,8 +7,10 @@ import java.util.Collection;
 import java.util.Arrays;
 import java.lang.reflect.Array;
 import java.util.stream.Collectors;
+import java.lang.RuntimeException;
 
 class BinarySearch<O, V>{
+    //Ищет объект совпадающий с предоставленным значением
     private ValueGetter<O, V> get;
     private CustomComparator<V> comp;
     private O[] arr;//should be sorted
@@ -83,6 +85,9 @@ class BinarySearch<O, V>{
             
             if (get==null || comp==null){
                 //TODO throw
+            }
+            if (list.size()<=0){
+                System.out.println("Искать нечего!");
             }
             
             result.get=get;

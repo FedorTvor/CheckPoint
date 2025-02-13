@@ -4,11 +4,12 @@ import java.util.LinkedList;
 import java.lang.String;
 
 class CowLevel{
+    /*
     static class YearOfCar extends ValueGetter<Car, java.lang.Integer>{
         public java.lang.Integer get(Car car){
             return car.getYearOfProduction();
         }
-    }
+    }*/
     static class IntComp implements CustomComparator<java.lang.Integer>{
         public int compare(java.lang.Integer o1, java.lang.Integer o2){
             if (o1<o2) return -1;
