@@ -87,7 +87,7 @@ class BinarySearch<O, V>{
                 //TODO throw
             }
             if (list.size()<=0){
-                throw new RuntimeException("No Objects to sort!");
+                System.out.println("Искать нечего!");
             }
             
             result.get=get;
