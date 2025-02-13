@@ -1,20 +1,20 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import Class.*;
+import Menu.PrintArrayAction;
+import Menu.ManuallyFillArrayAction;
+import Menu.RandomFillArrayAction;
+import Menu.Menu;
+import Utility.TempClass;
 
 public class Main {
-    public static enum datatype{
-        CAR,
-        BOOK,
-        ROOTVEGETABLE
-    }
+
     public static void main(String[] args) {
-        //Storage storage = Storage.getInstance();
+        //Utility.Storage storage = Utility.Storage.getInstance();
 
         Menu print_array_menu=new Menu();
         print_array_menu.prelude="Выберите тип данных";
-        print_array_menu.addAction("1", "Автомобиль",new PrintArrayAction<Car>(datatype.CAR));
-        print_array_menu.addAction("2", "Книга",new PrintArrayAction<Book>(datatype.BOOK));
-        print_array_menu.addAction("3", "Корнепллод",new PrintArrayAction<RootVegetable>(datatype.ROOTVEGETABLE));
+        print_array_menu.addAction("1", "Автомобиль",new PrintArrayAction<Car>(TempClass.datatype.CAR));
+        print_array_menu.addAction("2", "Книга",new PrintArrayAction<Book>(TempClass.datatype.BOOK));
+        print_array_menu.addAction("3", "Корнепллод",new PrintArrayAction<RootVegetable>(TempClass.datatype.ROOTVEGETABLE));
         print_array_menu.addAction("0", "Отмена", null);
         
         Menu menu = new Menu();
