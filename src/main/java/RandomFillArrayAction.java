@@ -20,21 +20,25 @@ public class RandomFillArrayAction implements MenuAction {
             String choice = scanner.next();
             switch (choice) {
                 case "1":
-                    do{// Записываем рандомные автомобили
-                    Storage<Car> storage= Storage.<Car>getInstance(Main.datatype.CAR);
-                    int start_index=findFirst(storage,size);
-                    Object[] objects = storage.getObjects();
-                    ItemRandomizer<Car> carRandomizer = new CarRandomizer();
+                    // Записываем рандомные автомобили
+                    {
+                        Storage<Car> storage = Storage.<Car>getInstance(Main.datatype.CAR);
+                        int start_index = findFirst(storage, size);
+                        Object[] objects = storage.getObjects();
 
-                    for (int i = start_index; i < objects.length; i++) {
-                        objects[i] = carRandomizer.generate();
+                        ItemRandomizer<Car> carRandomizer = new CarRandomizer();
+
+                        for (int i = start_index; i < objects.length; i++) {
+                            objects[i] = carRandomizer.generate();
+                        }
+                        System.out.println(objects[binaryCarSearch(objects, (Car)objects[2])]
+                                .toString()); //;binaryCarSearch(objects, objects[2]);
+                        step = false;
                     }
-                    step = false;
-                    }while(false);
                     break;
                 case "2":
                     System.out.println("Выбран Книга");
-                    do{// Записываем рандомные книги
+                    {// Записываем рандомные книги
                     Storage<Book> storage= Storage.<Book>getInstance(Main.datatype.BOOK);
                     int start_index=findFirst(storage,size);
                     Object[] objects = storage.getObjects();
@@ -44,11 +48,11 @@ public class RandomFillArrayAction implements MenuAction {
                         objects[i] = bookRandomizer.generate();
                     }
                     step = false;
-                    }while(false);
+                    }
                     break;
                 case "3":
                     System.out.println("Выбран Корнепллод");
-                    do{// Записываем рандомные корнеплоды
+                    {// Записываем рандомные корнеплоды
                     Storage<RootVegetable> storage= Storage.<RootVegetable>getInstance(Main.datatype.ROOTVEGETABLE);
                     int start_index=findFirst(storage,size);
                     Object[] objects = storage.getObjects();
@@ -58,13 +62,46 @@ public class RandomFillArrayAction implements MenuAction {
                         objects[i] = rootVegetableRandomizer.generate();
                     }
                     step = false;
-                    }while(false);
+                    }
                     break;
                 case "0":
                     step = false;
                     break;
             }
         }
+    }
+
+    //private final CustomComparator<T> comparator;
+
+    /*public CustomSearch(CustomComparator<T> comparator) {
+        this.comparator = comparator;
+    }*/
+
+    public int binaryCarSearch(Object[] array, Car target) {
+        //comparator.compare(src1[index1], src2[index2])
+        final CustomComparator<Car> comparator = new CarComporator();
+
+        if (array == null || array.length == 0) {
+            return -1; //
+        }
+
+        int low = 0;
+        int high = array.length - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int comparisonResult = comparator.compare((Car)array[mid], target);
+
+            if (comparisonResult == 0) {
+                return mid;
+            } else if (comparisonResult < 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return -1;
     }
 
     private int findFirst(Storage<? extends Object>storage, int size){
