@@ -15,7 +15,8 @@ public class PrintArrayAction<T> implements MenuAction {
             for (T value : objects) {
                 System.out.println(value + " ");
             }
+        } else {
+            System.out.println("Нет объектов данного типа.");
         }
-        System.out.println("Нет объектов данного типа.");
     }
 }

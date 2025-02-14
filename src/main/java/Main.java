@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Main {
     public static enum datatype{
         CAR,
@@ -32,7 +29,7 @@ public class Main {
         menu.addAction("5", "Сортировка", sort_array_menu);
         //menu.addAction("5", "MergeSort Сортировка массива", null);
         //menu.addAction("6", "Сортировать классы с четными значениями", null);
-        menu.addAction("7", "Поиск элемента в массиве", new SearchAction());
+        menu.addAction("7", "Бинарный поиск", new SearchHelper().GetSearchMenuItem());
         menu.addAction("0", "Выход", new ExitAction());
 
         menu.execute();

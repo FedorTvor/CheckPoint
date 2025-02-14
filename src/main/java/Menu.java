@@ -23,8 +23,9 @@ public class Menu implements MenuAction{
     public Menu() {
     }
 
-    public void addAction(String key, String name, MenuAction action){
+    public Menu addAction(String key, String name, MenuAction action){
         choices.put(key, new Pair<String, MenuAction>(name, action));
+        return this;
     }
     
     public void execute(){
