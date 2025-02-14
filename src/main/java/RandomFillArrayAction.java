@@ -1,14 +1,13 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class RandomFillArrayAction implements MenuAction {
 
     @Override
-    public void execute(){
-        //Storage storage = Storage.getInstance();
-        //Object[] objects = storage.getObjects();
+    public MenuAction execute(){
         Scanner scanner = new Scanner(System.in);
         boolean step = true;
-        
+
 
         System.out.print("Введите размер массива: ");
         int size = getIntInput(scanner);
@@ -23,55 +22,41 @@ public class RandomFillArrayAction implements MenuAction {
             String choice = scanner.next();
             switch (choice) {
                 case "1":
-                    do{
-                    Storage<Car> storage= Storage.<Car>getInstance(Main.datatype.CAR);
-                    int start_index=findFirst(storage,size);
-                    Object[] objects = storage.getObjects();
-                    ItemRandomizer<Car> carRandomizer = new CarRandomizer();
-
-                    
-                    for (int i = start_index; i < objects.length; i++) {
-                        objects[i] = carRandomizer.generate();
-                    }
+                    System.out.println("Выбраны Автомобили");
+                    fillArray(scanner,size,DataType.datatype.CAR,new CarRandomizer());
                     step = false;
-                    }while(false);
                     break;
                 case "2":
-                    System.out.println("Выбран Книга");
-                    do{
-                    //Book
-                    Storage<Book> storage= Storage.<Book>getInstance(Main.datatype.BOOK);
-                    int start_index=findFirst(storage,size);
-                    Object[] objects = storage.getObjects();
-                    ItemRandomizer<Book> bookRandomizer = new BookRandomizer();
-
-                    for (int i = start_index; i < objects.length; i++) {
-                        objects[i] = bookRandomizer.generate();
-                    }
+                    System.out.println("Выбраны Книги");
+                    fillArray(scanner,size,DataType.datatype.BOOK,new BookRandomizer());
                     step = false;
-                    }while(false);
                     break;
                 case "3":
                     System.out.println("Выбран Корнепллод");
-                    do{
-                    Storage<RootVegetable> storage= Storage.<RootVegetable>getInstance(Main.datatype.ROOTVEGETABLE);
-                    int start_index=findFirst(storage,size);
-                    Object[] objects = storage.getObjects();
-
-                    ItemRandomizer<RootVegetable> rootVegetableRandomizer = new RootVegetableRandomizer();
-
-                    for (int i = start_index; i < objects.length; i++) {
-                        objects[i] = rootVegetableRandomizer.generate();
-                    }
+                    fillArray(scanner,size,DataType.datatype.ROOTVEGETABLE,new RootVegetableRandomizer());
                     step = false;
-                    }while(false);
                     break;
                 case "0":
                     step = false;
                     break;
             }
         }
+
         System.out.println("выход");
+        return null;
+    }
+
+    private <T> void fillArray(Scanner scanner, int size, DataType.datatype datatype, ItemRandomizer<T> randomizer) {
+        Storage<T> storage = Storage.<T>getInstance(datatype);
+        int start_index = findFirst(storage, size);
+        Object[] objects = storage.getObjects();
+        for (int i = start_index; i < objects.length; i++) {
+            objects[i] = randomizer.generate();
+        }
+        String className = datatype.getClassName();
+        WriterFile writerFile = new WriterFile<>(new File(className + ".txt"));
+        writerFile.createdFile();
+        writerFile.writeText(objects);
     }
 
     private int findFirst(Storage<? extends Object>storage, int size){

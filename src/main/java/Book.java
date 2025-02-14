@@ -20,7 +20,7 @@ public class Book {
         return title;
     }
 
-    public int getPages() {
+    public Integer getPages() {
         return pages;
     }
 

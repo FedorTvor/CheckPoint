@@ -6,8 +6,9 @@ public class Car {
     public Car() {
     }
 
+
     public Integer getPower() {
-        return power;
+        return this.power;
     }
 
     public String getModel() {
@@ -27,6 +28,7 @@ public class Car {
                 ", yearOfProduction=" + yearOfProduction +
                 '}';
     }
+
 
     public static class BuildCAr{
         private Integer power;
