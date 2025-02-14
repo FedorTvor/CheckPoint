@@ -1,4 +1,4 @@
-
+import menu.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,6 +14,5 @@ public class Main {
         menu.addAction("0", "Выход", new ExitAction());
 
         menu.execute();
-
     }
 }
