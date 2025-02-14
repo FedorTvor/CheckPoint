@@ -22,7 +22,7 @@ public class ReaderFile {
         reader.close();
         return objects;
     }
-    private <T> T parseObject(String line, Class<T> type) {
+    public static <T> T parseObject(String line, Class<T> type) {
         if (type == Car.class) {
             return (T) new ParseCar().parse(line);
         } else if (type == Book.class) {
