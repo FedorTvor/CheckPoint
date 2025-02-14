@@ -4,10 +4,10 @@ public class CheckHelp {
     }
 
     public static Boolean bookCheck(String author, String title, Integer pages) {
-        return  pages != null && !author.isEmpty() && !title.isEmpty() & pages > 0;
+        return  pages != null && !author.isEmpty() && !title.isEmpty() && pages > 0;
     }
 
     public static Boolean rootVegetableCheck(String type, String colour, Integer weight) {
-        return  weight != null && !type.isEmpty() && !colour.isEmpty() & weight > 0;
+        return  weight != null && !type.isEmpty() && !colour.isEmpty() && weight > 0;
     }
 }

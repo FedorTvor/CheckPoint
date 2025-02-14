@@ -1,12 +1,16 @@
 public class Car {
-    private Integer power;
+    private static Integer power;
     private String model;
     private Integer yearOfProduction;
 
     public Car() {
     }
 
+
     public Integer getPower() {
+        return power;
+    }
+    public static Integer getPower(Object o) {
         return power;
     }
 
@@ -27,6 +31,7 @@ public class Car {
                 ", yearOfProduction=" + yearOfProduction +
                 '}';
     }
+
 
     public static class BuildCAr{
         private Integer power;
