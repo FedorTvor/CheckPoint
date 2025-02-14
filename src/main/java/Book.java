@@ -1,7 +1,7 @@
 public class Book {
     private String author;
     private String title;
-    private Integer pages;
+    private static Integer pages;
 
     public Book() {
     }
@@ -20,7 +20,10 @@ public class Book {
         return title;
     }
 
-    public int getPages() {
+    public Integer getPages() {
+        return pages;
+    }
+    public static Integer getPages(Object o) {
         return pages;
     }
 

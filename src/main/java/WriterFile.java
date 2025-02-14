@@ -15,10 +15,7 @@ public class WriterFile<T> {
 
     public void createdFile() {
         try {
-            if(this.name.createNewFile()) {
-            } else {
-                System.out.println(this.name.getName() + "уже имеется");
-            }
+            this.name.createNewFile();
         } catch (IOException e) {
             System.out.println(this.name + "ошибка создания" + e);
         }

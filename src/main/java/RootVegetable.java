@@ -1,7 +1,7 @@
 public class RootVegetable {
     private String type;
     private String colour;
-    private Integer weight;
+    private static Integer weight;
 
     public RootVegetable() {
     }
@@ -20,7 +20,10 @@ public class RootVegetable {
         return colour;
     }
 
-    public Integer getWeight() {
+    public static Integer getWeight() {
+        return weight;
+    }
+    public static Integer getWeight(Object o) {
         return weight;
     }
 
@@ -32,6 +35,8 @@ public class RootVegetable {
                 ", weight=" + weight +
                 '}';
     }
+
+
 
     public static class Builder{
         private String type;
