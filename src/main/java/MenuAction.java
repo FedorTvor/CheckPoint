@@ -1,3 +1,3 @@
 public interface MenuAction {
-    void execute();
+    public MenuAction execute();
 }

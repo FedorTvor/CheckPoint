@@ -1,6 +1,5 @@
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.Scanner;
 
 class SearchAction implements MenuAction {
@@ -19,10 +18,10 @@ class SearchAction implements MenuAction {
 		while (step) {
 			switch (choicestr) {
 				case "1":
-					Storage<Car> storage1 = Storage.getInstance(DataType.datatype.CAR);
+					Storage<Car> storage1 = Storage.getInstance(DataType.ClassType.CAR);
 					storage1.toString();
 					System.out.println("что ищем");
-					Car [] masCar = fillArray(scanner, DataType.datatype.CAR, new FillCarManually());
+					Car [] masCar = fillArray(scanner, DataType.ClassType.CAR, new FillCarManually());
 					if (storage1.getObjects() != null) {
 						var bscar = new BinarySearch<>(new CarComporator()).binarySearch(storage1
 										.getTObjects(Car.class), masCar[0]);
@@ -37,9 +36,9 @@ class SearchAction implements MenuAction {
 					step = false;
 					break;
 				case "2":
-					Storage<Book> storage2 = Storage.getInstance(DataType.datatype.BOOK);
+					Storage<Book> storage2 = Storage.getInstance(DataType.ClassType.BOOK);
 					System.out.println("что ищем");
-					Book [] masBook = fillArray(scanner, DataType.datatype.BOOK, new FillBookManually());
+					Book [] masBook = fillArray(scanner, DataType.ClassType.BOOK, new FillBookManually());
 					if (storage2.getObjects() != null) {
 						int bsBook = new BinarySearch<>(new BookComporator()).binarySearch(storage2
 								.getTObjects(Book.class), masBook[0]);
@@ -54,9 +53,9 @@ class SearchAction implements MenuAction {
 					step = false;
 					break;
 				case "3":
-					Storage<RootVegetable> storage3 = Storage.getInstance(DataType.datatype.ROOTVEGETABLE);
+					Storage<RootVegetable> storage3 = Storage.getInstance(DataType.ClassType.ROOTVEGETABLE);
 					System.out.println("что ищем");
-					RootVegetable[] rootVegetablesMas = fillArray(scanner, DataType.datatype.ROOTVEGETABLE, new FillRootVegetableManually());
+					RootVegetable[] rootVegetablesMas = fillArray(scanner, DataType.ClassType.ROOTVEGETABLE, new FillRootVegetableManually());
 					if (storage3.getObjects() != null) {
 						int bsRootV = new BinarySearch<>(new RootVegetableComporator()).binarySearch(storage3
 								.getTObjects(RootVegetable.class), rootVegetablesMas[0]);
@@ -78,13 +77,13 @@ class SearchAction implements MenuAction {
 		System.out.println("выход");
 		return null;
 	}
-	private <T> T[] fillArray(Scanner scanner, DataType.datatype datatype, Fill<T> filler) {
-		Storage<T> storage = Storage.<T>getInstance(datatype);
+	private <T> T[] fillArray(Scanner scanner, DataType.ClassType ClassType, Fill<T> filler) {
+		Storage<T> storage = Storage.<T>getInstance(ClassType);
 		T[] array = filler.fill();
 		int start_index = findFirst(storage, array.length);
 		Object[] objects = storage.getObjects();
 		System.arraycopy(array, 0, objects, start_index, array.length);
-		String className = datatype.getClassName();
+		String className = ClassType.getClassName();
 		WriterFile writerFile = new WriterFile<>(new File(className + ".txt"));
 		writerFile.createdFile();
 		writerFile.writeText(objects);

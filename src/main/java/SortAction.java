@@ -11,23 +11,23 @@ public class SortAction implements MenuAction {
 		System.out.println("Введите путь файла:");
 		String path = scanner.next();
 
-		DataType.datatype dataType;
+		DataType.ClassType dataType;
 		Storage<?> storage;
 		CustomComparator<?> comparator;
 		Class<?> type;
 		Function<?, Integer> extractor;
 		if (path.toLowerCase().endsWith("car.txt")) {
-			dataType = DataType.datatype.CAR;
+			dataType = DataType.ClassType.CAR;
 			comparator = new CarComporator();
 			type = Car.class;
 			storage = Storage.getInstance(dataType);
 		} else if (path.toLowerCase().endsWith("book.txt")) {
-			dataType = DataType.datatype.BOOK;
+			dataType = DataType.ClassType.BOOK;
 			comparator = new BookComporator();
 			type = Book.class;
 			storage = Storage.getInstance(dataType);
 		} else if (path.toLowerCase().endsWith("rootvegetable.txt")) {
-			dataType = DataType.datatype.ROOTVEGETABLE;
+			dataType = DataType.ClassType.ROOTVEGETABLE;
 			comparator = new RootVegetableComporator();
 			type = RootVegetable.class;
 			storage = Storage.getInstance(dataType);

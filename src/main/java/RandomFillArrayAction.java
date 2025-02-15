@@ -23,17 +23,17 @@ public class RandomFillArrayAction implements MenuAction {
             switch (choice) {
                 case "1":
                     System.out.println("Выбраны Автомобили");
-                    fillArray(scanner,size,DataType.datatype.CAR,new CarRandomizer());
+                    fillArray(scanner,size, DataType.ClassType.CAR,new CarRandomizer());
                     step = false;
                     break;
                 case "2":
                     System.out.println("Выбраны Книги");
-                    fillArray(scanner,size,DataType.datatype.BOOK,new BookRandomizer());
+                    fillArray(scanner,size, DataType.ClassType.BOOK,new BookRandomizer());
                     step = false;
                     break;
                 case "3":
                     System.out.println("Выбран Корнепллод");
-                    fillArray(scanner,size,DataType.datatype.ROOTVEGETABLE,new RootVegetableRandomizer());
+                    fillArray(scanner,size, DataType.ClassType.ROOTVEGETABLE,new RootVegetableRandomizer());
                     step = false;
                     break;
                 case "0":
@@ -46,14 +46,14 @@ public class RandomFillArrayAction implements MenuAction {
         return null;
     }
 
-    private <T> void fillArray(Scanner scanner, int size, DataType.datatype datatype, ItemRandomizer<T> randomizer) {
-        Storage<T> storage = Storage.<T>getInstance(datatype);
+    private <T> void fillArray(Scanner scanner, int size, DataType.ClassType ClassType, ItemRandomizer<T> randomizer) {
+        Storage<T> storage = Storage.<T>getInstance(ClassType);
         int start_index = findFirst(storage, size);
         Object[] objects = storage.getObjects();
         for (int i = start_index; i < objects.length; i++) {
             objects[i] = randomizer.generate();
         }
-        String className = datatype.getClassName();
+        String className = ClassType.getClassName();
         WriterFile writerFile = new WriterFile<>(new File(className + ".txt"));
         writerFile.createdFile();
         writerFile.writeText(objects);

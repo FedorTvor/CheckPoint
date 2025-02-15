@@ -1,11 +1,11 @@
 public class DataType {
-	public static enum datatype{
+	public static enum ClassType {
 		CAR(Car.class),
 		BOOK(Book.class),
 		ROOTVEGETABLE(RootVegetable.class);
 		private final Class<?> clazz;
 
-		datatype(Class<?> clazz) {
+		ClassType(Class<?> clazz) {
 			this.clazz = clazz;
 		}
 		public Class<?> getClazz() {
