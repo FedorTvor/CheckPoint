@@ -27,8 +27,8 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "author='" + author + '\'' +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
                 ", pages=" + pages +
                 '}';
     }
@@ -64,9 +64,9 @@ public class Book {
 
     public static Book createInstance(String author, String title, Integer pages) {
         return new Book.Builder()
+                .setTitle(title)
                 .setAuthor(author)
                 .setPages(pages)
-                .setTitle(title)
                 .build();
     }
 }

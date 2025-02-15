@@ -1,8 +1,7 @@
 import java.util.HashMap;
-import java.lang.reflect.Array;
 import java.lang.Class;
 public class Storage<T> {
-    private static HashMap<DataType.datatype, Storage> instances =new HashMap<DataType.datatype, Storage>();//содержит Pair с
+    private static HashMap<DataType.ClassType, Storage> instances =new HashMap<DataType.ClassType, Storage>();//содержит Pair с
     private Object[] objects;
     private static Storage<?> instance;
     private T[] tObjects;
@@ -11,7 +10,7 @@ public class Storage<T> {
         this.objects = new Object[] {};
     }
 
-    public static <T> Storage<T> getInstance(DataType.datatype i){
+    public static <T> Storage<T> getInstance(DataType.ClassType i){
         Storage<T> instance=instances.get(i);
         if (instance == null) {
             instance = new Storage<T>();

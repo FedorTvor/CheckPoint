@@ -17,13 +17,13 @@ public class ReadFileArrayAction implements MenuAction{
 
         try {
             if (pathchek.equals("Car")) {
-                Storage<Car> storage= Storage.getInstance(DataType.datatype.CAR);
+                Storage<Car> storage= Storage.getInstance(DataType.ClassType.CAR);
                 type = Car.class;
             } else if (pathchek.equals("Book")) {
-                Storage<Book> storage= Storage.getInstance(DataType.datatype.BOOK);
+                Storage<Book> storage= Storage.getInstance(DataType.ClassType.BOOK);
                 type = Book.class;
             } else if (pathchek.equals("RootVegetable")) {
-                Storage<RootVegetable> storage= Storage.getInstance(DataType.datatype.ROOTVEGETABLE);
+                Storage<RootVegetable> storage= Storage.getInstance(DataType.ClassType.ROOTVEGETABLE);
                 type = RootVegetable.class;
             } else {
                 System.out.println("Неподдерживаемый тип файла.");

@@ -16,15 +16,15 @@ public class ManuallyFillArrayAction implements MenuAction {
             String choice = scanner.next();
             switch (choice) {
                 case "1":
-                    fillArray(scanner, DataType.datatype.CAR, new FillCarManually());
+                    fillArray(scanner, DataType.ClassType.CAR, new FillCarManually());
                     step = false;
                     break;
                 case "2":
-                    fillArray(scanner, DataType.datatype.BOOK, new FillBookManually());
+                    fillArray(scanner, DataType.ClassType.BOOK, new FillBookManually());
                     step = false;
                     break;
                 case "3":
-                    fillArray(scanner, DataType.datatype.ROOTVEGETABLE, new FillRootVegetableManually());
+                    fillArray(scanner, DataType.ClassType.ROOTVEGETABLE, new FillRootVegetableManually());
                     step = false;
                     break;
                 case "0":
@@ -32,10 +32,10 @@ public class ManuallyFillArrayAction implements MenuAction {
                     break;
             }
         }
-		return null;
-	}
+        return null;
+    }
 
-    private <T> void fillArray(Scanner scanner, DataType.datatype datatype, Fill<T> filler) {
+    private <T> void fillArray(Scanner scanner, DataType.ClassType datatype, Fill<T> filler) {
         Storage<T> storage = Storage.<T>getInstance(datatype);
         T[] array = filler.fill();
         int start_index = findFirst(storage, array.length);
